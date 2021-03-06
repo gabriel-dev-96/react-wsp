@@ -41,20 +41,11 @@ const Sidebar = () => {
                         </a>
                         <div className={subMenu.div} id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav className="sb-sidenav-menu-nested nav">
-                                <Link className="nav-link" to="/cuenta1">
-                                    927 939 458
-                                </Link>
                                 <Link className="nav-link" to="/WhatsApp/927939458">
                                     TECOLO
                                 </Link>
-                                <a className="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
                             </nav>
                         </div>
-                        <a className="nav-link collapsed" href="#nn" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <div className="sb-nav-link-icon"><i className="fas fa-book-open"></i></div>
-                                Pages
-                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
-                        </a>
                         <div className="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                             <nav className="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                 <a className="nav-link collapsed" href="#nn" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
@@ -81,15 +72,6 @@ const Sidebar = () => {
                                 </div>
                             </nav>
                         </div>
-                        <div className="sb-sidenav-menu-heading">Addons</div>
-                        <a className="nav-link" href="charts.html">
-                            <div className="sb-nav-link-icon"><i className="fas fa-chart-area"></i></div>
-                                Charts
-                            </a>
-                        <a className="nav-link" href="tables.html">
-                            <div className="sb-nav-link-icon"><i className="fas fa-table"></i></div>
-                                Tables
-                            </a>
                     </div>
                 </div>
                 <div className="sb-sidenav-footer">

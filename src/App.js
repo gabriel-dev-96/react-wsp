@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./views/Login";
-import WhatsApp from "./components/chat/WhatsApp";
 import { SocketContext, socket } from "./context/socket";
 import { Provider } from "react-redux";
 import store from "./redux/createStore";
@@ -21,7 +20,6 @@ const App = () => {
             <Router>
               <Content>
                 <Switch>
-                  <Route path="/cuenta1" component={WhatsApp} />
                   <Route path="/home" component={Home} />
                   <Route exact path="/WhatsApp/:phone" component={WhatsApp2} />
                 </Switch>

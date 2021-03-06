@@ -1,9 +1,8 @@
 import React, { useEffect, useContext, useState } from 'react'
-import { useSelector } from 'react-redux';
 import { SocketContext } from '../../context/socket';
 import { useDispatch } from 'react-redux';
 import chatActions from '../../redux/actions/chatActions';
-import { ChatFooter, MessageFast } from '../chat/ChatElements'
+import { ChatFooter, MessageFast } from '../chats/ChatElements'
 import { MdMood, MdMic, MdAttachFile } from "react-icons/md";
 import MessageText from './MessageText'
 import MessageAudio from './MessageAudio'
@@ -13,11 +12,13 @@ import MessageVideo from './MessageVideo'
 import MessageDocument from './MessageDocument'
 import {messagesFast} from '../../db/messagesFast'
 import * as serviceEmoji from '../../services/emoji.service'
+import {messagesData} from '../../db/messages';
 
 import './chat.css'
 
 const Chat = () => {
-    const { header, messages } = useSelector(state => state.chat.chat)
+    //const { header, messages } = useSelector(state => state.chat.chat)
+    const [messages, setMessages] = useState([])
     const [toogleFastMessage, setToggleFastMessage]= useState(false)
     const [message, setMessage] = useState({
         body: '',
@@ -45,7 +46,7 @@ const Chat = () => {
         }else{
             setToggleFastMessage(false)
         }
-        setMessage({ ...message, [name]: value, 'to': header._serialized })
+        setMessage({ ...message, [name]: value })
     }
     const toBase64 = (file) => new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -54,7 +55,7 @@ const Chat = () => {
             reader.onerror = (error) => reject(error);
     });
     const getFastMessage=(msg)=>{
-        setMessage({...message,body: msg, 'to': header._serialized})
+        setMessage({...message,body: msg})
         setToggleFastMessage(false)
     }
     const handleMedia = async (e) => {
@@ -67,7 +68,7 @@ const Chat = () => {
                 filename: file.name
             }
         )))
-        setMessage({...message, 'to': header._serialized, hasMedia: true, files: filesBase64})
+        setMessage({...message, hasMedia: true, files: filesBase64})
     }
     const dispatch = useDispatch();
 
@@ -78,6 +79,7 @@ const Chat = () => {
             console.log(data)
             dispatch(chatActions.addMessage(data))
         });
+        setMessages(messagesData)
     }, [socket, dispatch])
     return (
         <div className="col-9 px-0">
@@ -86,7 +88,7 @@ const Chat = () => {
                     <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" />
 
                     <div className="chat-about">
-                        <div className="chat-with">{header.name} - {header._serialized}</div>
+                        <div className="chat-with">Anthony</div>
                         <div className="chat-num-messages">already 1 902 messages</div>
                     </div>
                     <i className="fa fa-star"></i>
